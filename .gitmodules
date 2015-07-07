@@ -1,6 +1,6 @@
 [submodule "SIPL"]
 	path = SIPL
-	url = https://github.com/smistad/SIPL.git
+	url = https://github.com/philliihd/SIPL.git
 [submodule "OpenCLUtilityLibrary"]
 	path = OpenCLUtilityLibrary
-	url = https://github.com/smistad/OpenCLUtilityLibrary.git
+	url = https://github.com/philliihd/OpenCLUtilityLibrary.git
