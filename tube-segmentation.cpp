@@ -1,4 +1,5 @@
 //#define USE_SIPL_VISUALIZATION
+#include <algorithm>
 #include <boost/iostreams/device/mapped_file.hpp>
 #include <queue>
 #include <stack>
@@ -22,7 +23,7 @@
 #include "SIPL/Types.hpp"
 #include "timing.hpp"
 #include "HelperFunctions.hpp"
-#define MAX(a,b) a > b ? a : b
+
 // Undefine windows crap
 #ifdef WIN32
 #undef min
@@ -892,9 +893,9 @@ if(getParamBool(parameters, "timing")) {
 #pragma omp parallel for
         for(int i = 0; i < totalSize; i++) {
          SIPL::float3 v;
-            v.x = MAX(-1.0f, Fs[i*4] / 32767.0f);
-            v.y = MAX(-1.0f, Fs[i*4+1] / 32767.0f);;
-            v.z = MAX(-1.0f, Fs[i*4+2] / 32767.0f);
+            v.x = std::max(-1.0f, Fs[i*4] / 32767.0f);
+            v.y = std::max(-1.0f, Fs[i*4+1] / 32767.0f);;
+            v.z = std::max(-1.0f, Fs[i*4+2] / 32767.0f);
             T.Fx[i] = v.x;
             T.Fy[i] = v.y;
             T.Fz[i] = v.z;
@@ -1081,9 +1082,9 @@ void runCircleFittingAndTest(OpenCL * ocl, cl::Image3D * dataset, SIPL::int3 * s
         ocl->queue.enqueueReadImage(vectorField, CL_TRUE, offset, region, 0, 0, Fs);
 #pragma omp parallel for
         for(int i = 0; i < totalSize; i++) {
-            TS.Fx[i] = MAX(-1.0f, Fs[i*4] / 32767.0f);
-            TS.Fy[i] = MAX(-1.0f, Fs[i*4+1] / 32767.0f);;
-            TS.Fz[i] = MAX(-1.0f, Fs[i*4+2] / 32767.0f);
+            TS.Fx[i] = std::max(-1.0f, Fs[i*4] / 32767.0f);
+            TS.Fy[i] = std::max(-1.0f, Fs[i*4+1] / 32767.0f);;
+            TS.Fz[i] = std::max(-1.0f, Fs[i*4+2] / 32767.0f);
         }
         delete[] Fs;
         /*
@@ -1092,9 +1093,9 @@ void runCircleFittingAndTest(OpenCL * ocl, cl::Image3D * dataset, SIPL::int3 * s
         ocl->queue.enqueueReadImage(vectorFieldSmall, CL_TRUE, offset, region, 0, 0, FsSmall);
 #pragma omp parallel for
         for(int i = 0; i < totalSize; i++) {
-            TS.FxSmall[i] = MAX(-1.0f, FsSmall[i*4] / 32767.0f);
-            TS.FySmall[i] = MAX(-1.0f, FsSmall[i*4+1] / 32767.0f);
-            TS.FzSmall[i] = MAX(-1.0f, FsSmall[i*4+2] / 32767.0f);
+            TS.FxSmall[i] = std::max(-1.0f, FsSmall[i*4] / 32767.0f);
+            TS.FySmall[i] = std::max(-1.0f, FsSmall[i*4+1] / 32767.0f);
+            TS.FzSmall[i] = std::max(-1.0f, FsSmall[i*4+2] / 32767.0f);
         }
         delete[] FsSmall;
         }
@@ -1303,9 +1304,9 @@ void runCircleFittingAndRidgeTraversal(OpenCL * ocl, Image3D * dataset, SIPL::in
         ocl->queue.enqueueReadImage(vectorField, CL_TRUE, offset, region, 0, 0, Fs);
 #pragma omp parallel for
         for(int i = 0; i < totalSize; i++) {
-            TS.Fx[i] = MAX(-1.0f, Fs[i*4] / 32767.0f);
-            TS.Fy[i] = MAX(-1.0f, Fs[i*4+1] / 32767.0f);;
-            TS.Fz[i] = MAX(-1.0f, Fs[i*4+2] / 32767.0f);
+            TS.Fx[i] = std::max(-1.0f, Fs[i*4] / 32767.0f);
+            TS.Fy[i] = std::max(-1.0f, Fs[i*4+1] / 32767.0f);;
+            TS.Fz[i] = std::max(-1.0f, Fs[i*4+2] / 32767.0f);
         }
         delete[] Fs;
 

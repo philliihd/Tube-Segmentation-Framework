@@ -12,6 +12,9 @@ using boost::unordered_set;
 #include <queue>
 #include <algorithm>
 
+#undef min
+#undef max
+
 using namespace SIPL;
 
 #define MAX(a,b) a > b ? a : b

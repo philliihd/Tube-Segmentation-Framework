@@ -1,5 +1,10 @@
 #include "gradientVectorFlow.hpp"
 #include <iostream>
+#include <algorithm>
+
+#undef min
+#undef max
+
 using namespace cl;
 
 Image3D initSolutionToZero(OpenCL &ocl, SIPL::int3 size, int imageType, int bufferSize, bool no3Dwrite) {

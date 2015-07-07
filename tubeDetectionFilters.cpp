@@ -1,4 +1,9 @@
 #include "tubeDetectionFilters.hpp"
+#include <algorithm>
+
+#undef min
+#undef max
+
 using namespace cl;
 
 void runSplineTDF(
