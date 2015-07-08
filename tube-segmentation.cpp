@@ -74,6 +74,7 @@ TSFOutput * run(std::string filename, paramList &parameters, std::string kernel_
 	ocl->queue = c->getQueue(0);
 	ocl->device = c->getDevice(0);
 	ocl->GC = c->getGarbageCollector();
+    ocl->oulContext = *c;
 
     // Select first device
     std::cout << "Using device: " << ocl->device.getInfo<CL_DEVICE_NAME>() << std::endl;
